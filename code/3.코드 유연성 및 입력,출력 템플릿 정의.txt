@@ -1,0 +1,17 @@
+# 입력 변수 정의 파일 (variables.tf)
+variable "aws_region" {
+  type        = string
+  default     = "ap-northeast-2"
+  description = "Target AWS Infrastructure Deploy Region"
+}
+
+# 인프라 프로비저닝 완료 후 결과 조회 파일 (outputs.tf)
+output "alb_dns_name" {
+  value       = aws_lb.external_alb.dns_name
+  description = "Application Load Balancer Public DNS Endpoint"
+}
+
+output "route53_nameservers" {
+  value       = aws_route53_zone.primary.name_servers
+  description = "Route 53 Hosted Zone Name Servers for Gabia Link"
+}

@@ -1,0 +1,14 @@
+# 1. 작업 디렉토리 테라폼 환경 초기화 및 프로바이더 플러그인 다운로드
+terraform init
+
+# 2. 작성한 HCL 소스 코드의 문법적 오류 및 규칙 무결성 검사
+terraform validate
+
+# 3. 실제 클라우드에 반영되기 전 리소스 생성 예시 계획 사전 조회
+terraform plan
+
+# 4. 선언적 인프라 아키텍처를 AWS 가상 클라우드 인프라에 최종 배포 적용
+terraform apply -auto-approve
+
+# 5. [필요시] 구축된 모든 가상 자원을 역순으로 안전하게 자동 회수/파괴
+# terraform destroy -auto-approve

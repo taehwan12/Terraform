@@ -1,0 +1,10 @@
+# 1. 로컬 테라폼 코드 자산 Git 저장소 초기화
+git init
+git add .
+git commit -m "feat: Infrastructure as Code (VPC, ASG, ALB, Route53) - Team 4RSENAL"
+
+# 2. 원격 통합 GitHub Repository 연결 및 브랜치 푸시
+# (이 시점에 Terraform Cloud의 Webhook이 트리거되어 무인 GitOps 자동 배포 가동 시작)
+git remote add origin https://github.com/taehwan12/4RSENAL-Terraform-IaC.git
+git branch -M main
+git push -u origin main

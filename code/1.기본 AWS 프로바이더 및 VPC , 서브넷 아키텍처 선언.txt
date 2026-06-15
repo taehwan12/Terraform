@@ -1,0 +1,34 @@
+# 1. AWS Provider 구성 및 기본 리전 변수 매핑
+provider "aws" {
+  region = var.aws_region
+}
+
+# 2. 4RSENAL 가상 사설망 인프라 자원 생성
+resource "aws_vpc" "main" {
+  cidr_block           = "10.250.0.0/16"
+  enable_dns_hostnames = true
+  enable_dns_support   = true
+
+  tags = {
+    Name = "terraform-prd-vpc"
+  }
+}
+
+# 3. 고가용성 퍼블릭 서브넷 프로비저닝 (AZ 2A, 2C 분산)
+resource "aws_subnet" "pub_2a" {
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "10.250.1.0/24"
+  availability_zone = "ap-northeast-2a"
+  map_public_ip_on_launch = true
+
+  tags = { Name = "terraform-pub-2a" }
+}
+
+resource "aws_subnet" "pub_2c" {
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "10.250.11.0/24"
+  availability_zone = "ap-northeast-2c"
+  map_public_ip_on_launch = true
+
+  tags = { Name = "terraform-pub-2c" }
+}
